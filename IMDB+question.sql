@@ -15,6 +15,9 @@ USE imdb;
 -- Type your code below:
 
 
+SELECT table_name, table_rows
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA = 'imdb';
 
 
 
@@ -25,6 +28,18 @@ USE imdb;
 -- Q2. Which columns in the movie table have null values?
 -- Type your code below:
 
+SELECT 
+		SUM(CASE WHEN id IS NULL THEN 1 ELSE 0 END) AS ID_nulls, 
+		SUM(CASE WHEN title IS NULL THEN 1 ELSE 0 END) AS title_nulls, 
+		SUM(CASE WHEN year IS NULL THEN 1 ELSE 0 END) AS year_nulls,
+		SUM(CASE WHEN date_published IS NULL THEN 1 ELSE 0 END) AS date_published_nulls,
+		SUM(CASE WHEN duration IS NULL THEN 1 ELSE 0 END) AS duration_nulls,
+		SUM(CASE WHEN country IS NULL THEN 1 ELSE 0 END) AS country_nulls,
+		SUM(CASE WHEN worlwide_gross_income IS NULL THEN 1 ELSE 0 END) AS worlwide_gross_income_nulls,
+		SUM(CASE WHEN languages IS NULL THEN 1 ELSE 0 END) AS languages_nulls,
+		SUM(CASE WHEN production_company IS NULL THEN 1 ELSE 0 END) AS production_company_nulls
+
+FROM movie;
 
 
 
