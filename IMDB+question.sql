@@ -75,7 +75,16 @@ Output format for the second part of the question:
 
 
 
+select year, count(id) as number_of_movies
+from movie
+group by year
+order by year;
 
+select month(date_published) as month_wise, 
+count(id) as number_of_movies
+from movie
+group by month(date_published)
+order by month_wise ; 
 
 
 
@@ -89,7 +98,11 @@ We know USA and India produces huge number of movies each year. Lets find the nu
 -- Type your code below:
 
 
-
+select count(id) as number_of_movies, year, country
+from movie
+where country = 'USA' OR country = 'India'
+Group by country 
+having year = 2019;
 
 
 
@@ -106,6 +119,8 @@ Let’s find out the different genres in the dataset.*/
 
 
 
+select DISTINCT genre 
+from genre;
 
 
 
@@ -122,7 +137,14 @@ Combining both the movie and genres table can give more interesting insights. */
 
 
 
-
+select genre, count(id) as higest_number, year
+from genre AS g
+inner join movie as m
+on g.movie_id = m.id
+where year = 2019
+group by genre
+order by count(id) DESC
+limit 1;
 
 
 
@@ -137,7 +159,16 @@ So, let’s find out the count of movies that belong to only one genre.*/
 -- Type your code below:
 
 
+WITH genre_1 AS
+(
+	SELECT movie_id, COUNT(genre) AS no_of_movies
+	FROM genre
+	GROUP BY movie_id
+	HAVING no_of_movies=1
+)
 
+SELECT COUNT(movie_id) AS number_of_movies
+FROM genre_1;
 
 
 
@@ -165,6 +196,13 @@ Now, let's find out the possible duration of RSVP Movies’ next project.*/
 -- Type your code below:
 
 
+
+select genre, ROUND(AVG(duration),2) as avg_duration
+from genre as g
+inner join movie as m
+on g.movie_id = m.id
+group by genre 
+order by AVG(duration) DESC;
 
 
 
