@@ -20,4 +20,4 @@ Once you have your SQL database set up and the IMDB dataset loaded, you can star
 
 ## SQL Queries
 
-I have find insight using SQL and solved different question which was asked by upGrad about the dataset. IMDB_Analysis contains every query written with the comments and all the information regarding what we have to find is explained properly.
+I have used SQL to gain insights and answer various questions related to the IMDB dataset as requested by upGrad. The file IMDB_Analysis includes queries, comments, and clear instructions on the objectives to be achieved.
